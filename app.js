@@ -2,7 +2,7 @@
 const express = require("express");
 const app =  express();
 
-app.listen(3000, ()=>{console.log("listening on 3000 sucessfully..!")})
+app.listen(3002, ()=>{console.log("listening on 3002 sucessfully..!")})
 
 
 //ejs-------------------------------------
@@ -32,17 +32,26 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 const ObjectId = require('mongodb').ObjectId;
 
-app.get("/listing/:id",(req,res)=>{
+/* app.get("/listing/:id",(req,res)=>{
   res.render("showpage.ejs")
+});  */ 
+
+
+// use it on top of "/listing/:id "     !IMPORTANT
+app.get("/listing/new",(req,res)=>{  
+  res.render("new")
+})
+
+app.get("/listing/:id",async (req,res)=>{
+  try{
+   let {id} = req.params;
+   const listing = await Listing.findById(id).catch((err)=>{console.log(err)});  //
+   res.render("show.ejs",{listing})
+  }catch(err){
+    console.log(err);
+  }
+   //res.render("show.ejs")
 });
-
-// app.get("/listing/:id",async (req,res)=>{
-
-//    let {id} = req.params;
-//    const listing = await Listing.findById(id).catch((err)=>{console.log(err)});  //
-//    res.render("show.ejs",{listing})
-//    //res.render("show.ejs")
-
    
 //   //  if(mongoose.Types.ObjectId.isValid(id)){
 //   //    let listing = await Listing.findOne({_id:new ObjectId(id)}).then(()=>{res.render("show")})
@@ -56,6 +65,13 @@ app.get("/listing/:id",(req,res)=>{
   //await res.render("show",{t} )
  // const id = new mongoose.Types.ObjectId(req.params.id.trim());
   //await Listing.findOne({_id:new ObjectId(id)}).then((listing)=>{res.render("show",{listing})}).catch((err)=>{console.log(err.reason)});
-  
-  
 
+
+
+
+  app.post("/listing",async (req,res)=>{  
+    //res.send(req.body.listing)
+    const tupple = new Listing(req.body.listing)
+    await tupple.save();
+    res.redirect("/listing");
+  })

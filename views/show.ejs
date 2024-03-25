@@ -1,5 +1,19 @@
 <%-include('includes/header.ejs')%> 
-  <div class="font-sm text-red-700 border border-green-600">
-    <h1>moin is best </h1>
+  <div class="flex w-screen justify-center ">
+    <div class="mx-4 my-5">
+      <div class="">
+        <img class="rounded-xl" src="<%=listing.image%>" alt="" />
+      </div>
+      <div class="mt-5 font-serif text-xl font-bold capitalize">
+        <span><%=listing.title%></span>
+      </div>
+      <div class="font-serif text-lg"><span>₹</span><span><%=listing.price.toLocaleString("en-in")%></span><span>/night</span></div>
+      <div class="font-serif text-lg capitalize"><span><%=listing.location%></span><span>,</span><span><%=listing.country%></span>
+      </div>
+      <div class="text-base text-slate-500 font-serif ">
+        <p><%=listing.description%></p>
+      </div>
+    </div>
   </div>
+  
 <%-include("includes/footer.ejs")%>

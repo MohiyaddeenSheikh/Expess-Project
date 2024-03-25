@@ -1,8 +1,7 @@
 <%-include('includes/header.ejs')%> 
-
-
-  <div class="m-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <% for(r of result){ %>
+<%-include('includes/navbar.ejs')%>
+  <div class="m-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-7 ">
+    <% for(r of result.reverse()){ %>
     <div class="flex-row ">
       <div class="">
           <a href="/listing/<%=r._id%>"><img class="w-screen rounded-xl" src="<%= r.image %>" alt="fgfg" />

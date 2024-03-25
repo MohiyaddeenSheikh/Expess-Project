@@ -1,0 +1,37 @@
+<%-include("includes/header.ejs")%>
+<div class="flex h-screen w-screen items-center justify-center border-4 border-green-600">
+  <form action="/listing" method="post" class="w-3/4">
+  <fieldset class="flex w-full flex-col items-center justify-center gap-3 border border-slate-600 px-4 py-5 shadow-2xl">
+    <legend align="center" class="px-4 font-serif text-lg font-bold">New Listing</legend>
+    
+    <label for="" class="relative w-full rounded-2xl border shadow-xl">
+      <input name="listing[title]" type="text " class="h-8 w-full rounded-2xl pl-28" />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr-14 pt-1">Title</span>
+    </label>
+    <label for="" class="relative w-full rounded-2xl border shadow-xl">
+      <input name="listing[description]" type="text " class="h-8 w-full rounded-2xl pl-28" />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr-1 pt-1">Description</span>
+    </label>
+    <label for="" class="relative w-full rounded-2xl border shadow-xl">
+      <input name="listing[image]" type="text " class="h-8 w-full rounded-2xl pl-28" />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr-4 pt-1">Image Url</span>
+    </label>
+    <label for="" class="relative w-full rounded-2xl border shadow-xl">
+      <input name="listing[price]" type="text " class="h-8 w-full rounded-2xl pl-28" />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr-12 pt-1">Price</span>
+    </label>
+    <label for="" class="relative w-full rounded-2xl border shadow-xl">
+      <input name="listing[location]" type="text " class="h-8 w-full rounded-2xl pl-28" />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr-7 pt-1">Location</span>
+    </label>
+    <label for="" class="relative w-full rounded-2xl border shadow-xl">
+      <input name="listing[country]" type="text " class="h-8 w-full rounded-2xl pl-28" />
+      <span class=" absolute left-0 h-8 rounded-l-2xl border px-5 pr-8 pt-1">Country</span>
+    </label>
+    <button class="hover:bg-black h-9 hover:outline outline-gray-600 rounded-3xl border px-7 shadow-xl bg-slate-400 font-bold text-white font-serif ">Submit</button>
+  </fieldset>
+  </form>
+</div>
+
+
+<%-include("includes/header.ejs")%>
