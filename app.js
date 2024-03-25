@@ -24,12 +24,38 @@ const mongoose = require('mongoose');
 const Listing = require('./model/listing');
 
 app.get("/listing",async (req,res)=>{
-  const tupple1 = new Listing({
-    title:"Mehak Hotel",
-    description:"very luxirious and pleasent hotel.",
-    price:5000,
-    location: "Noida, sector 62",
-    country:"India"
-  })
-  await tupple1.save().then((r)=>{res.render("index",{r})})
+  await Listing.find({}).then((result)=>{res.render("index.ejs",{result})});
+
 })
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+const ObjectId = require('mongodb').ObjectId;
+
+app.get("/listing/:id",(req,res)=>{
+  res.render("showpage.ejs")
+});
+
+// app.get("/listing/:id",async (req,res)=>{
+
+//    let {id} = req.params;
+//    const listing = await Listing.findById(id).catch((err)=>{console.log(err)});  //
+//    res.render("show.ejs",{listing})
+//    //res.render("show.ejs")
+
+   
+//   //  if(mongoose.Types.ObjectId.isValid(id)){
+//   //    let listing = await Listing.findOne({_id:new ObjectId(id)}).then(()=>{res.render("show")})
+     
+     
+//      //res.render("show",{listing})
+
+//    });
+  // res.send(id)
+  //t = await Listing.findOne({_id:id})
+  //await res.render("show",{t} )
+ // const id = new mongoose.Types.ObjectId(req.params.id.trim());
+  //await Listing.findOne({_id:new ObjectId(id)}).then((listing)=>{res.render("show",{listing})}).catch((err)=>{console.log(err.reason)});
+  
+  
+

@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="output.css">
-</head>
-<body>
-  <div class="flex flex-col justify-center items-center w-screen h-screen">
-    <h1 class="text-red-500 font-serif text-sm font-bold">this is my home page</h1>
-    <h1 class="text-green-800"><%=r%></h1>
+<%-include('includes/header.ejs')%> 
+
+
+  <div class="m-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <% for(r of result){ %>
+    <div class="flex-row ">
+      <div class="">
+          <a href="/listing/<%=r._id%>"><img class="w-screen rounded-xl" src="<%= r.image %>" alt="fgfg" />
+      </div>
+      <div class="font-serif text-sm font-bold my-3"><%= r.title %></div>
+      <div class="font-serif text-sm"><span>₹</span><span><%= r.price %></span><span>/night</span></div>
+      <div class="font-serif text-sm"><span><%= r.location %></span><span>,</span><span><%= r.country %></span></div>
+    </a>
+    </div>
+    <%}%>
+  
   </div>
-</body>
-</html>
+
+
+  <%-include("includes/footer.ejs") %>

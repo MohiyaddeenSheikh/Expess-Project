@@ -1,4 +1,5 @@
 sampleListings = [
+ 
   {
       "title": "Royal Palace Hotel",
       "description": "Experience the grandeur of royalty at our palace hotel. With opulent interiors and regal hospitality, it's a journey back in time.",
@@ -465,5 +466,29 @@ sampleListings = [
   "country": "France"
 }
 ]
+/* sampleListings = [  {
+  "title": "Jannat Hotel",
+  "description": "Experience the grandeur of royalty at our palace hotel. With opulent interiors and regal hospitality, it's a journey back in time.",
+  "image": "/1.jpg",
+  "price": 9500,
+  "location": "Noida",
+  "country": "India"
+},
+{
+  "title": "Jannat Hotel",
+  "description": "Experience the grandeur of royalty at our palace hotel. With opulent interiors and regal hospitality, it's a journey back in time.",
+  "image": "/1.jpg",
+  "price": 9500,
+  "location": "Noida",
+  "country": "India"
+},
+{
+  "title": "Jannat Hotel",
+  "description": "Experience the grandeur of royalty at our palace hotel. With opulent interiors and regal hospitality, it's a journey back in time.",
+  "image": "/1.jpg",
+  "price": 9500,
+  "location": "Noida",
+  "country": "India"
+},] */
 module.exports = {data:sampleListings};
 
