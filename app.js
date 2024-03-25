@@ -50,23 +50,28 @@ app.get("/listing/:id",async (req,res)=>{
   }catch(err){
     console.log(err);
   }
-   //res.render("show.ejs")
 });
    
-//   //  if(mongoose.Types.ObjectId.isValid(id)){
-//   //    let listing = await Listing.findOne({_id:new ObjectId(id)}).then(()=>{res.render("show")})
-     
-     
-//      //res.render("show",{listing})
+const methodOverride = require('method-override');
+app.use(methodOverride("_method"));
+app.put("/listing/:id",async (req,res)=>{
+  const {id} = req.params;
+  //const reconstructedListing =  
+  await Listing.findByIdAndUpdate(id,{...req.body.listing});
+  res.redirect("/listing");
+})
 
-//    });
-  // res.send(id)
-  //t = await Listing.findOne({_id:id})
-  //await res.render("show",{t} )
- // const id = new mongoose.Types.ObjectId(req.params.id.trim());
-  //await Listing.findOne({_id:new ObjectId(id)}).then((listing)=>{res.render("show",{listing})}).catch((err)=>{console.log(err.reason)});
+app.delete("/listing/:id",async(req,res)=>{
+  const {id} = req.params;
+  await Listing.findByIdAndDelete(id);
+  res.redirect("/listing");
+})
 
 
+app.get("/listing/:id/edit",async (req,res)=>{
+  const result = await Listing.findById(req.params.id);
+  res.render("edit",{result})
+});
 
 
   app.post("/listing",async (req,res)=>{  
