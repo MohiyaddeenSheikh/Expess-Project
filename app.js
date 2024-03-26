@@ -6,6 +6,8 @@ app.listen(3002, ()=>{console.log("listening on 3002 sucessfully..!")})
 
 
 //ejs-------------------------------------
+const ejsMate = require("ejs-mate");
+app.engine('ejs',ejsMate);
 const path = require("path");
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"/views"))

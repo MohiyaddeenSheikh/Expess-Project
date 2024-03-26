@@ -1,8 +1,8 @@
-<%-include('includes/header.ejs')%> 
+<% layout("/layouts/boilerplate") %>
   <div class="flex w-screen justify-center ">
     <div class="mx-4 my-5">
       <div class="">
-        <img class="rounded-xl" src="<%=listing.image%>" alt="" />
+        <img class="rounded-xl w-56" src="<%=listing.image%>" alt="" />
       </div>
       <div class="mt-5 font-serif text-xl font-bold capitalize">
         <span><%=listing.title%></span>
