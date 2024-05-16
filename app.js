@@ -44,6 +44,9 @@ app.use((req,res,next)=>{
   res.locals.sucessMsg = req.flash("success")
   res.locals.failMsg = req.flash("error")
   res.locals.currUser = req.user;
+  console.log("+++++++++++++++++++")
+  console.log(res.locals.currUser)
+  console.log("++++++++++++++++")
   next()
 })
 
@@ -73,7 +76,7 @@ const mongoose = require('mongoose');
 const Listing = require('./model/listing');
 
 const {isLoggedIn} = require("./middleware");
-app.get("/listing",isLoggedIn,wrapAsync(async (req,res)=>{
+app.get("/listing",wrapAsync(async (req,res)=>{
   await Listing.find({}).populate('').then((result)=>{res.render("index.ejs",{result})});
 }))
 
@@ -91,10 +94,10 @@ app.get("/listing/new",isLoggedIn,(req,res)=>{
   res.render("new")
 })
 
-app.get("/listing/:id",isLoggedIn,wrapAsync(async (req,res)=>{
+app.get("/listing/:id",wrapAsync(async (req,res)=>{
   try{
    let {id} = req.params;
-   const listing = await Listing.findById(id).populate("reviews").populate("owner").catch((err)=>{console.log(err)});  //
+   const listing = await Listing.findById(id).populate({path:"reviews",populate:{path:"author"}}).populate("owner").catch((err)=>{console.log(err)});  //
    console.log(listing)
    if(!listing){
     req.flash("error","Listing doesn't exist..!")
@@ -106,9 +109,10 @@ app.get("/listing/:id",isLoggedIn,wrapAsync(async (req,res)=>{
   }
 }));
    
+const {isOwner} = require("./middleware")
 const methodOverride = require('method-override');
 app.use(methodOverride("_method"));
-app.put("/listing/:id",joiListingSchemaAsMiddleware,wrapAsync(async (req,res)=>{
+app.put("/listing/:id",isLoggedIn,isOwner,joiListingSchemaAsMiddleware,wrapAsync(async (req,res)=>{
   const {id} = req.params;
   //const reconstructedListing =  
   await Listing.findByIdAndUpdate(id,{...req.body.listing});
@@ -116,7 +120,7 @@ app.put("/listing/:id",joiListingSchemaAsMiddleware,wrapAsync(async (req,res)=>{
   res.redirect("/listing");
 }));
 
-app.delete("/listing/:id",isLoggedIn,wrapAsync(async(req,res)=>{
+app.delete("/listing/:id",isLoggedIn,isOwner,wrapAsync(async(req,res)=>{
   const {id} = req.params;
   await Listing.findByIdAndDelete(id);
   req.flash("success","Deleted Sucessfully..!");
@@ -157,7 +161,7 @@ app.get("/listing/:id/edit",isLoggedIn,wrapAsync(async (req,res)=>{
       next()
     }
   }
-  app.post("/listing/:id/review",[joiReviewSchemaAsMiddleware,insertOneReview],(req,res)=>{
+  app.post("/listing/:id/review",isLoggedIn,[joiReviewSchemaAsMiddleware,insertOneReview],(req,res)=>{
     const url = "/listing/"+req.params.id;
     req.flash("success","Review Added Sucessfully..!");
     res.redirect(url)

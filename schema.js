@@ -5,7 +5,7 @@ module.exports.joiListingSchema = joi.object({
   listing:joi.object({
     title: joi.string().required(),
     description:joi.string().required(),
-    image:joi.string().regex(new RegExp('^https:\/\/')).required(),
+    image:joi.string().required(),//image:joi.string().regex(new RegExp('^https:\/\/')).required(),
     price:joi.number().min(100).required(),
     location: joi.string().min(3).required(),
     country:joi.string().min(3).required()

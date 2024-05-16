@@ -10,6 +10,7 @@
       <div class="font-serif text-sm"><span>₹</span><span><%= r.price %></span><span>/night</span></div>
       <div class="font-serif text-sm"><span><%= r.location %></span><span>,</span><span><%= r.country %></span></div>
     </a>
+    <% if(currUser && currUser._id.equals(r.owner._id)){%>
     <div class="grid grid-cols-3 py-2">
       <a href="/listing/<%=r._id%>/edit" class="bg-sky-600 hover:bg-green-800 rounded-full h-8 text-xs font-bold text-white content-center text-center items-center flex justify-center"> <span>Edit</span></a>
       <span></span>
@@ -17,6 +18,12 @@
         <button class="bg-sky-600 hover:bg-red-700 rounded-full w-full h-8 text-xs font-bold text-white ">Delete</button>
       </form>
     </div>
+    <%}else{%>
+      <div class="grid grid-cols-3 py-2">
+        <a href="/listing/<%=r._id%>" class="bg-sky-600 hover:bg-green-800 rounded-full h-8 text-xs font-bold text-white content-center text-center items-center flex justify-center"> <span>Book Now</span></a>
+        <span></span>
+      </div>
+    <%}%>
     </div>
     <%}%>
   

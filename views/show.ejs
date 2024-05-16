@@ -13,15 +13,24 @@
       <div class="text-base text-slate-500 font-serif ">
         <p><%=listing.description%></p>
       </div>
+      <!-- book now -->
+      <div class="grid grid-cols-12 mt-6">
+
+      <a href="/listing/<%=r._id%>" class="bg-sky-600 hover:bg-green-800 rounded-full h-8 text-xs font-bold text-white content-center text-center items-center flex justify-center col-span-12 "> <span>Book Now</span></a>
+      </div>
       <!-- credit by -->
-      <div class="grid grid-cols-12  w-full h-20 px-3 ">
-        <div class="col-span-3 sm:col-span-7"></div>
-        <div class="col-span-3 sm:col-span-1  flex justify-center items-center">By: </div>
+      <div class="grid grid-cols-12  w-full h-4 px-3 mt-4 mb-4 ">
+        <div class="col-span-2 sm:col-span-8">
+        </div>
+        <div class="col-span-3 sm:col-span-1  flex justify-center items-center text-xs whitespace-nowrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill=""><path fill-rule="evenodd" clip-rule="evenodd" d="M21.007 8.27C22.194 9.125 23 10.45 23 12c0 1.55-.806 2.876-1.993 3.73.24 1.442-.134 2.958-1.227 4.05-1.095 1.095-2.61 1.459-4.046 1.225C14.883 22.196 13.546 23 12 23c-1.55 0-2.878-.807-3.731-1.996-1.438.235-2.954-.128-4.05-1.224-1.095-1.095-1.459-2.611-1.217-4.05C1.816 14.877 1 13.551 1 12s.816-2.878 2.002-3.73c-.242-1.439.122-2.955 1.218-4.05 1.093-1.094 2.61-1.467 4.057-1.227C9.125 1.804 10.453 1 12 1c1.545 0 2.88.803 3.732 1.993 1.442-.24 2.956.135 4.048 1.227 1.093 1.092 1.468 2.608 1.227 4.05Zm-4.426-.084a1 1 0 0 1 .233 1.395l-5 7a1 1 0 0 1-1.521.126l-3-3a1 1 0 0 1 1.414-1.414l2.165 2.165 4.314-6.04a1 1 0 0 1 1.395-.232Z" fill="#45b3e0"/></svg>
+          Verified by: 
+        </div>
          <div class="h-full w-full relative flex justify-center items-center col-span-2 sm:col-span-1 ">
-          <div class=" border-blue-600 bg-white  w-12 h-12 absolute rounded-full z-10 bg-[url('https://svgshare.com/i/154Z.svg')] bg-no-repeat bg-cover">
+          <div class=" border-blue-600 bg-white  w-8 h-8 absolute rounded-full z-10 bg-[url('https://svgshare.com/i/154Z.svg')] bg-no-repeat bg-cover">
             <img src="" class="rounded-full aspect-square ">
           </div>
-          <div class="border-4 bg-black border-green-500  w-14 h-14 absolute animate-spin rounded-full border-b-purple-600 border-r-pink-600 border-t-sky-700 border-l-orange-500">
+          <div class="border-4 bg-black border-slate-500  w-9 h-9 absolute animate-spin rounded-full border-b-purple-600 border-r-pink-600 border-t-sky-700 border-l-orange-500">
           </div>
         </div>
         <div class=" grid grid-row-subgrid col-span-3 sm:col-span-1  ps-2 font-serif text-sm">
@@ -35,6 +44,7 @@
 
       <hr class="w-full h-[1px] mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-400">
       <!-- Review Form -->
+      <% if(currUser){%>
       <div>
         <form action="/listing/<%=listing.id%>/review" method="POST" name="reviewForm" onsubmit="return validateReview(this)" class="flex flex-col">
           <div><span class="text-xl font-bold">Leave a Review</span></div>
@@ -87,13 +97,14 @@
 
         
       </div>
-      
+      <%}%>
 
     
     </div>
   </div>
 
 <!-- //review display -->
+
   <div class="w-screen flex justify-center">
     <div class="w-screen md:w-8/12 flex justify-center">
   
@@ -106,15 +117,17 @@
           <img src="" alt="" class="rounded-full ">
           </div>
           <div class=" col-span-8 items-center ">
-            <p  class="text-sm">Moin Sheikh</p>
+            <p  class="text-sm"><%= listing.reviews[i].author.username%></p>
             <span  class="text-xs">Noida ,India</span>
           </div>
-          <div class="col-span-2  relative">
+          <div class="col-span-2  relative ">
             <!-- //edit and delete -->
-            
+            <% if(currUser && currUser._id.equals(listing.reviews[i].author._id)){%>
             <button class=" absolute -top-5" >
               <img id="reviewDot" onclick="mainReview(event,this)"  class="" src="https://svgshare.com/i/15Ea.svg" alt="">
             </button>
+            <%}%>
+            
             <div id="" class="reviewDeleteList absolute top-0 right-4 border-slate-200 rounded-md shadow-lg w-11 hidden ">
                 <ul class=" text-black text-xs divide-y divide-slate-300 w-12 ">
                   <li class="hover:bg-black hover:font-bold hover:text-white px-1" >
@@ -129,6 +142,8 @@
                 </li>
             </ul>
             </div>
+            
+
           </div>
         </div>
         
@@ -153,7 +168,7 @@
     </div>
     </div>
   </div>
-  
+
   
 <!-- //review update -->
 

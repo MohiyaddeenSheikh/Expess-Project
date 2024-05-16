@@ -16,7 +16,7 @@ function v(x){
   let elementSvgpath = document.getElementById(x+"Svgpath")
   elementSvgpath.parentNode.classList.remove("hidden")
   if(x=="image"){
-    let regex = p = new RegExp("^https://[\w]*.*","g");
+    let regex = p = new RegExp("^[\w]*.*","g");
     if(regex.test(element)){
       satisfy(elementNode,elementSpan,elementSvgpath)
     return true;
@@ -100,7 +100,7 @@ function onKeyUpValidation(_this){
     }
   }
   if(x=="image"){
-    let regex = p = new RegExp("^https://[\w]*.*","g");
+    let regex = p = new RegExp("^[\w]*.*","g");
     if(regex.test(element)){
       satisfy(elementNode,elementSpan,elementSvgpath)
     return true;

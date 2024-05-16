@@ -15,7 +15,8 @@ const schema = mongoose.Schema;
 const reviewSchema = new schema({
   review:{type:String,require},
   rating:{type:Number, min:1,max:5,require},
-  createdAt:{type:Date, default:Date.now() }
+  createdAt:{type:Date, default:Date.now() },
+  author:{type:schema.Types.ObjectId, ref:"User"}
 })
 
 //3. create model
@@ -30,6 +31,7 @@ async function insertOneReview(req,res,next){
     review:req.body.review,
     rating:req.body.ratingReview,
   })
+  review1.author = req.user._id;
   await review1.save()
   await listing.reviews.push(review1)
   await listing.save()
