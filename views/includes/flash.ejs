@@ -1,0 +1,31 @@
+<% if(sucessMsg && sucessMsg.length) {%>
+  <div id="flashClose" class="w-screen flex justify-center ">
+
+    <div class="border w-96 border-green-500 mt-16 flex justify-center text-green-600 font-bold rounded-md sm:wid">
+    
+      <div class="grow border text-center">
+        <span><%= sucessMsg %></span>
+      </div>
+      <div class="border text-center border-white w-6 rounded-md text-green-500">
+        <button onclick="closeFlash(this)"> X </button>
+      </div>
+      
+    </div>
+  </div>
+
+<%}else if(failMsg && failMsg.length){%>
+  <div id="flashClose" class="w-screen flex justify-center ">
+
+    <div class="border w-96 border-red-500 mt-16 flex justify-center text-red-600 font-bold rounded-md sm:wid">
+    
+      <div class="grow border text-center">
+        <span><%= failMsg %></span>
+      </div>
+      <div class="border text-center border-white w-6 rounded-md text-red-500">
+      <button onclick="closeFlash(this)"> X </button>
+      </div>
+      
+    </div>
+    
+  </div>
+  <% } %>

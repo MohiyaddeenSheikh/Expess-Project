@@ -6,7 +6,9 @@ module.exports = {
     "./views/*.ejs",
     "./views/includes/*.ejs",
     "./views/show.ejs",
-    "./views/includes/*.ejs"
+    "./views/includes/*.ejs",
+    "./views/layouts/*.ejs",
+    "./views/users/*.ejs",
   ],
   theme: {
     extend: {},

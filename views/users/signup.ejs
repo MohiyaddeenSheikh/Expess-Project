@@ -1,0 +1,53 @@
+<%layout("./layouts/boilerplate.ejs")-%>
+
+<div class="flex h-screen w-screen items-center justify-center border-4 border-green-600">
+  <form action="/signup" onsubmit="return validateSignupForm()" method="post" class="w-3/4">
+  <fieldset class="flex w-full flex-col items-center justify-center gap-3 border border-slate-600 px-4 py-5 shadow-2xl">
+    <legend align="center" class="px-4 font-serif text-lg font-bold">Signup</legend>
+    <!-- username -->
+    <label for="username" class="relative w-full rounded-2xl border shadow-xl  ">
+      <input onkeyup="onKeyUpValidation(this)" id="username" name="username" type="text " class="h-8 w-full rounded-2xl pl-[120px]"  />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr pt-1 ">UserName</span>
+
+      <span class=" absolute -right-2 h-8 rounded-l-2xl  px-5 top-1" >
+        <svg id="usernameSvg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" class="hidden">
+        <path id="usernameSvgpath" d="M7.29417 12.9577L10.5048 16.1681L17.6729 9" stroke="currentcolor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="12" cy="12" r="10" stroke="currentcolor" stroke-width="2"/>
+        </svg>
+        </span>
+    </label>
+    <span id="usernameSpan" class="text-xs text-rose-500 self-start px-5 hidden"></span>
+    <!-- email -->
+    <label for="email" class="relative w-full rounded-2xl border shadow-xl">
+      <input onkeyup="onKeyUpValidation(this)" id="email" name="email" type="email" class="h-8 w-full rounded-2xl pl-[120px]" />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr-14 pt-1">Email</span>
+
+      <span class=" absolute -right-2 h-8 rounded-l-2xl  px-5 top-1" >
+        <svg id="emailSvg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" class="hidden">
+        <path id="emailSvgpath" d="M7.29417 12.9577L10.5048 16.1681L17.6729 9" stroke="currentcolor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="10" stroke="currentcolor" stroke-width="2"/>
+        </svg>
+        </span>
+    </label>
+    <span id="emailSpan" class="text-xs text-rose-500 self-start px-5 hidden"></span>
+
+
+    <!-- password -->
+    <label for="password" class="relative w-full rounded-2xl border shadow-xl">
+      <input onkeyup="onKeyUpValidation(this)" id="password" name="password" type="password" class="h-8 w-full rounded-2xl pl-[120px]" />
+      <span class="absolute left-0 h-8 rounded-l-2xl border px-5 pr-7 pt-1 " >Password</span>
+      <span class=" absolute -right-2 h-8 rounded-l-2xl  px-5 top-1 " >
+        <svg id="passwordSvg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" class="hidden">
+        <path id="passwordSvgpath" d="M7.29417 12.9577L10.5048 16.1681L17.6729 9" stroke="currentcolor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="10" stroke="currentcolor" stroke-width="2" />
+        </svg>
+        </span>
+    </label>
+    <span id="passwordSpan" class="text-xs text-rose-500 self-start px-5 hidden"></span>
+
+
+    <button class="hover:bg-black h-9 hover:outline outline-gray-600 rounded-3xl border px-7 shadow-xl bg-slate-400 font-bold text-white font-serif ">Signup</button>
+  </fieldset>
+  </form>
+</div>
+
